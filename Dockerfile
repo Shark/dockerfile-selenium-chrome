@@ -32,7 +32,7 @@ RUN wget --no-verbose -O /tmp/chromedriver_linux64.zip http://chromedriver.stora
     ln -fs /opt/chromedriver-${CHROMEDRIVER_VERSION}/chromedriver /usr/local/bin/chromedriver
 
 RUN x11vnc -storepasswd selenium ~/.vnc/passwd && \
-    useradd selenium --shell /bin/bash --create-home && \
+    useradd selenium --shell /bin/bash --create-home --uid 1000 && \
     echo "#!/bin/bash\nexec /usr/bin/chromium-browser --no-sandbox \"\$@\"" > /usr/bin/google-chrome && \
     chmod 755 /usr/bin/google-chrome
 
