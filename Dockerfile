@@ -47,7 +47,8 @@ RUN temp="$(mktemp -d)" && \
     cd / && \
     rm -rf "$temp"
 
-ADD ./etc/supervisor/conf.d /etc/supervisor/conf.d
+COPY etc/supervisor/conf.d /etc/supervisor/
+COPY docker-entrypoint.sh /
 
 EXPOSE 4444 5900 6080
 VOLUME ["/logs"]
