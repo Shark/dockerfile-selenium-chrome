@@ -12,7 +12,7 @@ ENV SELENIUM_PORT 4444
 ENV DISPLAY :0.0
 
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install language-pack-en ca-certificates curl dnsutils man openssl unzip wget xvfb fonts-ipafont-gothic xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic fluxbox x11vnc supervisor openjdk-8-jre-headless net-tools xterm git chromium-browser libgconf-2-4 && \
+    apt-get -y --no-install-recommends install language-pack-en ca-certificates curl dnsutils man openssl unzip wget xvfb fonts-ipafont-gothic xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic fluxbox x11vnc supervisor openjdk-8-jre-headless net-tools xterm git chromium-browser libgconf-2-4 ffmpeg && \
     locale-gen en_US.UTF-8 && \
     echo 'Europe/Berlin' > /etc/timezone && \
     dpkg-reconfigure --frontend noninteractive locales tzdata && \
@@ -50,5 +50,6 @@ RUN temp="$(mktemp -d)" && \
 ADD ./etc/supervisor/conf.d /etc/supervisor/conf.d
 
 EXPOSE 4444 5900 6080
+VOLUME ["/logs"]
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/docker-entrypoint.sh"]
