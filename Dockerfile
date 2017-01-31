@@ -47,7 +47,8 @@ RUN temp="$(mktemp -d)" && \
     cd / && \
     rm -rf "$temp"
 
-COPY etc/supervisor/conf.d /etc/supervisor/conf.d
+COPY etc /etc
+COPY usr /usr
 COPY docker-entrypoint.sh /
 
 EXPOSE 4444 5900 6080
