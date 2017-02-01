@@ -2,7 +2,7 @@
 set -euo pipefail
 
 main() {
-  if [[ "${FFMPEG_DISABLE:-}" -eq 1 ]]; then
+  if [[ "${FFMPEG_DISABLE:-}" == 'true' ]]; then
     echo "ffmpeg is disabled; exiting"
     return 0
   fi
